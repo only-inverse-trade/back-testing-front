@@ -13,14 +13,20 @@ export default function Backtest() {
         setLoading(true);
 
         try {
-            const result = await axios.post('http://localhost:8080/api/v1/backtest', {
+            const backendUrl =
+                window.location.hostname === 'localhost'
+                    ? 'http://localhost:8080'
+                    : 'http://54.180.127.214:8080';
+
+            const result = await axios.post(`${backendUrl}/api/v1/backtest`, {
                 ticker,
                 startDate,
                 endDate,
-                strategy: ""
+                strategy: "asdf"
             });
 
-            setResult(result.data.total_return);
+            setResult(result.data.totalReturn);
+            console.log(result.data);
         } catch (error) {
             console.error('요청 실패', error);
             setResult('???');
