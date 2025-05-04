@@ -13,10 +13,7 @@ export default function Backtest() {
         setLoading(true);
 
         try {
-            const backendUrl =
-                window.location.hostname === 'localhost'
-                    ? 'http://localhost:8080'
-                    : 'http://54.180.127.214:8080';
+            const backendUrl = 'http://54.180.127.214:8080';
 
             const result = await axios.post(`${backendUrl}/api/v1/backtest`, {
                 ticker,
